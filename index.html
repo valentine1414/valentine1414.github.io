@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <style>
+        body {
+            background-color: #242424;
+            color: white;
+        }
+
+        .valentine-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .center-content {
+            text-align: center;
+        }
+
+        .centered-content {
+            position: relative;
+        }
+
+        .center-image, .center-image2 {
+            width: 300px;
+        }
+
+        .text {
+            font-size: 40px;
+        }
+
+        .text2 {
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .yesButton, .noButton {
+            font-size: 16px;
+            padding: 8px 16px;
+            margin: 8px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .yesButton {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+            .yesButton:hover {
+                background-color: #388e3c;
+            }
+
+        .noButton {
+            background-color: #f44336;
+            color: white;
+            border: none;
+        }
+
+            .noButton:hover {
+                background-color: #d32f2f;
+            }
+    </style>
+</head>
+<body>
+    <div class="valentine-container">
+        <div class="center-content">
+            <div class="centered-content">
+                <img alt="cats with hearts" src="https://media.tenor.com/v63_brUy45wAAAAi/peach-goma-love-peach-cat.gif" class="center-image">
+                <div class="text">Будешь моей валентинкой?</div>
+                <div>
+                    <button class="yesButton" id="yesButton">
+                        Да
+                    </button>
+                    <button class="noButton" id="noButton">
+                        Нет
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const phrases = [
+            "Нет",
+            "Ты уверена?",
+            "Подумай еще раз",
+            "А может все таки да?",
+            "Ты делаешь мне больно",
+            "Последний шанс",
+            "Хорошо, мне плевать",
+            "Ладно, мне не плевать",
+            "Ну пожалуйста",
+            "Хорошо, нет так нет",
+            ";("
+        ];
+
+        let noCount = 0;
+        let yesPressed = false;
+
+        document.getElementById('yesButton').addEventListener('click', () => {
+            yesPressed = true;
+            document.getElementById('yesButton').style.display = 'none';
+            document.getElementById('noButton').style.display = 'none';
+            const img = document.createElement('img');
+            img.src = "https://media.tenor.com/i9yvlqt2aYoAAAAi/peach-goma-peach-and-goma.gif";
+            img.alt = "cats kissing";
+            img.className = "center-image2";
+            document.querySelector('.centered-content').appendChild(img);
+            const text = document.createElement('div');
+            text.textContent = "лав ю";
+            text.className = "text2";
+            document.querySelector('.centered-content').appendChild(text);
+            document.querySelector('.center-image').style.display = 'none';
+            document.querySelector('.text').style.display = 'none';
+        });
+
+        document.getElementById('noButton').addEventListener('click', () => {
+            noCount++;
+            if (noCount >= phrases.length) noCount = phrases.length - 1;
+            document.getElementById('noButton').textContent = phrases[noCount];
+            const yesButton = document.getElementById('yesButton');
+            const currentFontSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+            const newSize = currentFontSize + 20;
+            yesButton.style.fontSize = newSize + 'px';
+        });
+    </script>
+</body>
+</html>
